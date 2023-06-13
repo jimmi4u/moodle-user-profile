@@ -26,3 +26,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'User profile course';
+$string['modulename'] = 'User profile course';
+$string['modulenameplural'] = 'User profile course';
+
+
+$string['name'] = 'Vor und Nachname';
+$string['placeholder_name'] = 'Max Musterfrau';
+$string['not_empty'] = 'Das Feld darf nicht leer bleiben';
+$string['attachments'] = 'Profilbild';
+$string['description'] = 'Infos über dich';
+$string['placeholder_description'] = 'Gib hier weitere Infos über dich an';
+$string['invalid_description'] = 'Ungültige Beschreibung';
