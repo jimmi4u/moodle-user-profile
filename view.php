@@ -59,7 +59,7 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
 $templatesettingscard = (object)[
-    'url' => './25_Steal_Falls.jpg',
+    'url' => '../../25_Steal_Falls.jpg',
     'text' => 'testtext',
 ];
 
