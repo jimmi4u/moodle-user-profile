@@ -38,21 +38,15 @@
         // Set type of element.
         $mform->setType('name', PARAM_TEXT);
         // Erforderlich
-        $mform->addRule('name', get_string('not_empty', 'mod_upc'), 'required', '', 'client', false, false);  
+        $mform->addRule('name', get_string('not_empty', 'mod_upc'), 'required', '', 'client', false, false);
 
+        $filemanageropts = $this->_customdata['filemanageropts'];
         $mform->addElement(
             'filemanager',
-            'attachments',
+            'upcpicture',
             get_string('attachments', 'mod_upc'),
             null,
-            [
-                'subdirs' => 0,
-                'maxbytes' => 10485760,
-                'areamaxbytes' => 10485760,
-                'maxfiles' => 1,
-                'accepted_types' => ['*'],
-                'return_types' => FILE_INTERNAL | FILE_EXTERNAL,
-            ]
+            $filemanageropts
         );
 
         // Add elements to your form.
