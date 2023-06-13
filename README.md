@@ -1,7 +1,7 @@
 # User profile course #
 
 TODO Describe the plugin shortly here.
-
+# Test Paul
 TODO Provide more detailed description here.
 
 ## Installing via uploaded ZIP file ##
