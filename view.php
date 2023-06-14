@@ -65,15 +65,25 @@ echo $OUTPUT->header();
 
 $formlink = 'edit_profile.php?cmid=' . $cm->id;
 
-$newcarddata = array(
-    'form_link' => $formlink
-);
-
-echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
-
 $context = context_module::instance($cm->id);
 
+$hascard = $DB->get_record(
+    'userdata',
+    array(
+        'userid' => $USER->id,
+        'activityid' => $context->instanceid
+        )
+);
+
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
+
+// Show my own card in first place
+if ($hascard && count($records) > 1) {
+    unset($records[$hascard->id]);
+    array_unshift($records, $hascard);
+}
+
+echo '<div class="row">';
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
@@ -85,5 +95,13 @@ foreach ($records as $record) {
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
+
+// Hide the add-functionality if I already have a card
+if (!$hascard) {
+    $newcarddata = array('form_link' => $formlink);
+    echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
+}
+
+echo '</div>';
 
 echo $OUTPUT->footer();

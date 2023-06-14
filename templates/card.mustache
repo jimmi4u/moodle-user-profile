@@ -1,22 +1,27 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
-    <div class="card w-100">
+    <div class="card h-100">
 		<div class="card-body">
-			<div class="media">
+			<div class="media mb-4">
+				{{# url }}
 				<div class="media-image rounded-circle mr-3" style="background-image:url({{url}}); width:80px; height:80px; background-size:cover;">
-				<span class="sr-only">{{name}}</span>
+					<span class="sr-only">{{name}}</span>
 				</div>
+				{{/ url }}
+				{{^ url }}
+					<i role="img" class="icon fa fa-user-circle-o fa-fw text-secondary mx-auto" style="font-size:6em;">
+				{{/ url }}
 				<div class="media-body">
 					<h5 class="mt-0">{{name}}</h5>
 					{{text}}
 				</div>
 			</div>
 			{{# its_my_card }}
-			<a href="{{form_link}}" class="btn btn-primary">
-				<i title="{{#str}}edit, core{{/str}}" role="img" aria-label="edit" class="icon fa fa-pencil-square-o fa-fw "></i></a>
-			<a href="#" class="btn btn-primary">
-				<i title="{{#str}}delete, core{{/str}}" role="img" aria-label="delete" class="icon fa fa-trash-o fa-fw "></i></a>
-			<a href="#" class="btn btn-primary">
-				<i title="{{#str}}download, core{{/str}}" role="img" aria-label="download" class="icon fa fa-download fa-fw "></i></a>
+			<div class="text-right">
+				<a href="{{form_link}}" class="btn btn-primary mr-1">
+					<i title="{{#str}}edit, core{{/str}}" role="img" aria-label="edit" class="icon fa fa-pencil-square-o fa-fw m-0 "></i></a>
+				<a href="#" class="btn btn-secondary mr-1">
+					<i title="{{#str}}delete, core{{/str}}" role="img" aria-label="delete" class="icon fa fa-trash-o fa-fw m-0"></i></a>
+			</div>
 			{{/ its_my_card }}
 		</div>
 	</div>
