@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'User profile course';
 $string['modulename'] = 'User profile course';
 $string['modulenameplural'] = 'User profile course';
+$string['pluginadministration'] = 'UPC administration';
 
 
 $string['name'] = 'Vor und Nachname';
