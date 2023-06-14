@@ -29,6 +29,10 @@ $string['pluginname'] = 'User profile course';
 $string['modulename'] = 'User profile course';
 $string['modulenameplural'] = 'User profile course';
 $string['pluginadministration'] = 'UPC administration';
+$string['customdesc'] = 'customdesc';
+$string['upccustomoptionsheading'] = 'Specific UPC settings';
+$string['upcsettings'] = 'Settings';
+$string['upcname'] = 'Activity name';
 
 
 $string['name'] = 'Vor und Nachname';
