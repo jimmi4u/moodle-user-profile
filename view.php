@@ -85,6 +85,13 @@ if ($hascard && count($records) > 1) {
 }
 
 echo '<div class="row">';
+
+// Hide the add-functionality if I already have a card
+if (!$hascard) {
+    $newcarddata = array('form_link' => $formlink);
+    echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
+}
+
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
@@ -96,12 +103,6 @@ foreach ($records as $record) {
         'form_link_delete' => $formlink_delete
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
-}
-
-// Hide the add-functionality if I already have a card
-if (!$hascard) {
-    $newcarddata = array('form_link' => $formlink);
-    echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 }
 
 echo '</div>';
