@@ -57,9 +57,6 @@ $itemid = $USER->id;
 $draftupcpicture = file_get_submitted_draft_itemid('upcpicture');
 file_prepare_draft_area($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
-$data = new stdClass();
-$data->upcpicture = $draftupcpicture;
-
 $check_data = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $context->instanceid]);
 if (empty($check_data->textfield)) {
     $description = '';
