@@ -88,7 +88,11 @@ if ($hascard && count($records) > 1) {
 
 echo '<div class="row">';
 
-// Hide the add-functionality if actual user has already got a card.
+// Hide the add-functionality if I already have a card
+if (!$hascard) {
+    $newcarddata = array('form_link' => $formlink);
+    echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
+}
 
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
@@ -101,12 +105,6 @@ foreach ($records as $record) {
         'customheading' => $getheading,
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
-}
-
-// Hide the add-functionality if I already have a card
-if (!$hascard) {
-    $newcarddata = array('form_link' => $formlink);
-    echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 }
 
 foreach ($records as $record) {
