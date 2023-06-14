@@ -39,6 +39,10 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title(get_string('pluginname', 'mod_upc'));
 $PAGE->set_heading(get_string('pluginname', 'mod_upc'));
 
+
+$cm = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
+$context = context_module::instance($cm->id);
+
 $filemanageropts = array(
     'subdirs' => 0,
     'maxbytes' => 26214400,
@@ -48,14 +52,7 @@ $filemanageropts = array(
     'accepted_types' => array('.jpg', '.jpeg', '.png'),
 );
 
-$cm = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
-$context = context_module::instance($cm->id);
-
 $itemid = $USER->id;
-
-// Instantiate the myform form from within the plugin.
-$mform = new form_profile();
-//$mform->set_data($customdata);
 
 $draftupcpicture = file_get_submitted_draft_itemid('upcpicture');
 file_prepare_draft_area($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
@@ -73,18 +70,18 @@ if (empty($check_data->textfield)) {
 $customdata = array(
     'filemanageropts' => $filemanageropts,
     'cmid' => $cmid,
-    'picture' => $data,
+    'picture' => $draftupcpicture,
     'description' => $description
 );
+$mform = new form_profile(null, $customdata);
 
-$mform->set_data($customdata);
 
 // Form processing and displaying is done here.
 if ($mform->is_cancelled()) {
-
+    redirect(new moodle_url('/mod/upc/view.php', array('id' => $cmid)));
 } else if ($fromform = $mform->get_data()) {
 
-    $text = file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
+    file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
     if (empty($check_data)) {
         $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $context->instanceid, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
