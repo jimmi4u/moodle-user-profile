@@ -53,7 +53,9 @@
             null,
             $filemanageropts
         );
-        $mform->setDefault('upcpicture', $this->_customdata['picture']);
+        if (!$this->_customdata['newcard']) {
+            $mform->setDefault('upcpicture', $this->_customdata['picture']);
+        }
 
         // Add elements to your form.
         // Check for custom string in db. Use lang file if no value available.

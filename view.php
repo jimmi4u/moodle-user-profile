@@ -74,18 +74,22 @@ $hascard = $DB->get_record(
         'activityid' => $context->instanceid
         )
 );
+$formlink_delete = 'form_delete.php?cmid=' . $cm->id . '&userid=' . $USER->id;
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
 $getheading = $DB->get_field('upc', 'customdesc', array('id' => $cm->instance), '*', MUST_EXIST);
 
-// Show my own card in first place
+// Show my own card first
 if ($hascard && count($records) > 1) {
     unset($records[$hascard->id]);
     array_unshift($records, $hascard);
 }
 
 echo '<div class="row">';
+
+// Hide the add-functionality if actual user has already got a card.
+
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
@@ -103,6 +107,19 @@ foreach ($records as $record) {
 if (!$hascard) {
     $newcarddata = array('form_link' => $formlink);
     echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
+}
+
+foreach ($records as $record) {
+    $user = $DB->get_record('user', array('id' => $record->userid));
+    $templatesettingscard = (object)[
+        'url' => get_image_link($context->id, $record->userid),
+        'text' => $record->textfield,
+        'name' => $user->firstname . ' ' . $user->lastname,
+        'its_my_card' => $user->id === $USER->id,
+        'form_link' => $formlink,
+        'form_link_delete' => $formlink_delete
+    ];
+    echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
 
 echo '</div>';

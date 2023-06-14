@@ -44,3 +44,5 @@ $string['placeholder_description'] = 'Gib hier weitere Infos über dich an';
 $string['invalid_description'] = 'Ungültige Beschreibung';
 
 $string['add_my_card'] = 'Eigene Karte hinzufügen';
+
+$string['deleteconfirmmessage'] = "Sind Sie sicher, dass Sie Ihre Karte löschen wollen?";
