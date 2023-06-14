@@ -25,22 +25,22 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'User profile cards';
-$string['modulename'] = 'User profile cards';
-$string['modulenameplural'] = 'User profile cards';
-$string['pluginadministration'] = 'UPC administration';
-$string['customdesc'] = 'Custom description';
-$string['upccustomoptionsheading'] = 'Specific UPC settings';
-$string['upcsettings'] = 'Settings';
+$string['pluginname'] = 'Nutzerprofilkarten';
+$string['modulename'] = 'Nutzerprofilkarten';
+$string['modulenameplural'] = 'Nutzerprofilkarten';
+$string['pluginadministration'] = 'UPC Administration';
+$string['customdesc'] = 'Nutzerdefinierte Beschreibung';
+$string['upccustomoptionsheading'] = 'Spezifische UPC Einstellungen';
+$string['upcsettings'] = 'Einstellungen';
 $string['upcname'] = 'Activity name';
-$string['upcname_help'] = 'Please fill in the activity name';
+$string['upcname_help'] = 'Bitte den Aktivitätstitel eingeben';
+
 
 $string['placeholder_name'] = 'Max Musterfrau';
-$string['not_empty'] = 'This field is has to be filled in';
-$string['attachments'] = 'Profile image';
-$string['description'] = 'About you';
-$string['placeholder_description'] = 'Please fill in more information about you';
-$string['invalid_description'] = 'Invalid description';
+$string['not_empty'] = 'Das Feld darf nicht leer bleiben';
+$string['attachments'] = 'Profilbild';
+$string['description'] = 'Infos über Dich';
+$string['placeholder_description'] = 'Gib hier weitere Infos über dich an';
+$string['invalid_description'] = 'Ungültige Beschreibung';
 
-$string['add_my_card'] = 'Add a card';
-
+$string['add_my_card'] = 'Eigene Karte hinzufügen';
