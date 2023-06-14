@@ -67,6 +67,7 @@ if (empty($check_data->textfield)) {
 $customdesc = $DB->get_field('upc', 'customdesc', array('id' => $cm->instance), '*', MUST_EXIST);
 
 $customdata = array(
+    'newcard' => empty($check_data),
     'filemanageropts' => $filemanageropts,
     'cmid' => $cmid,
     'picture' => $draftupcpicture,
