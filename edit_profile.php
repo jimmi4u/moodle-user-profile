@@ -63,10 +63,18 @@ file_prepare_draft_area($draftupcpicture, $context->id, 'mod_upc', 'upcpicture',
 $data = new stdClass();
 $data->upcpicture = $draftupcpicture;
 
+$check_data = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $context->instanceid]);
+if (empty($check_data->textfield)) {
+    $description = '';
+} else {
+    $description = $check_data->textfield;
+}
+
 $customdata = array(
     'filemanageropts' => $filemanageropts,
     'cmid' => $cmid,
-    'picture' => $data
+    'picture' => $data,
+    'description' => $description
 );
 
 $mform->set_data($customdata);
@@ -78,12 +86,8 @@ if ($mform->is_cancelled()) {
 
     $text = file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
-    $upc = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
-    $activityid = $DB->get_record('upc', ['course' => $upc->course]);
-
-    $check_data = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $activityid->course]);
     if (empty($check_data)) {
-        $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $activityid->course, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
+        $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $context->instanceid, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
     } else {
         $check_data->usermodified = $USER->id;
         $check_data->timemodified = time();
