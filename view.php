@@ -58,13 +58,14 @@ $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
+$imagefileurl = ;
+$textcontent = ;
+$name = ;
+
 $templatesettingscard = (object)[
-    'url' => '../../25_Steal_Falls.jpg',
-    'text' => 'testtext',
-    'name' => 'testname',
-    'edit' => ,
-    'delete' => ,
-    'export' => ,
+    'url' => $imagefileurl,
+    'text' => $textcontent,
+    'name' => $name,
 ];
 
 echo $OUTPUT->header();
