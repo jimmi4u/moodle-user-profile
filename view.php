@@ -77,8 +77,8 @@ $hascard = $DB->get_record(
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
-// Show my own card in first plcae
-if ($hascard) {
+// Show my own card in first place
+if ($hascard && count($records) > 1) {
     unset($records[$hascard->id]);
     array_unshift($records, $hascard);
 }
@@ -97,7 +97,7 @@ foreach ($records as $record) {
 }
 
 // Hide the add-functionality if I already have a card
-if ($hascard) {
+if (!$hascard) {
     $newcarddata = array('form_link' => $formlink);
     echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 }
