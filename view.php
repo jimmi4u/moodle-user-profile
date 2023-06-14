@@ -74,7 +74,7 @@ global $DB;
 $context = context_module::instance($cm->id);
 
 
-$records = $DB->get_records('userdata'); // TODO Auf instanceid der aktivitaet einschraenken
+$records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
