@@ -152,10 +152,9 @@ function upc_get_file_info($browser, $areas, $course, $cm, $context, $filearea, 
  * @param array $options Additional options affecting the file serving.
  */
 function upc_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
-    global $DB, $CFG;
-
     $itemid = array_shift($args);
     $filename = array_pop($args);
+
     if (!$args) {
         $filepath = '/'; // $args is empty => the path is '/'
     } else {
