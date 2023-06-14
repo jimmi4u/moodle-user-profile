@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Nutzerprofilkarten';
 $string['modulename'] = 'Nutzerprofilkarten';
-$string['modulenameplural'] = 'User profile course';
+$string['modulenameplural'] = 'Nutzerprofilkarten';
 $string['pluginadministration'] = 'UPC Administration';
 $string['customdesc'] = 'Nutzerdefinierte Beschreibung';
 $string['upccustomoptionsheading'] = 'Spezifische UPC Einstellungen';
