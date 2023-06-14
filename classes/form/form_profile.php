@@ -53,6 +53,7 @@
             null,
             $filemanageropts
         );
+        $mform->setDefault('upcpicture', $this->_customdata['picture']);
 
         // Add elements to your form.
         $mform->addElement('textarea', 'description', get_string('description', 'mod_upc'), array('placeholder' => get_string('placeholder_description', 'mod_upc'), 'style' => 'width: 80%;'));
