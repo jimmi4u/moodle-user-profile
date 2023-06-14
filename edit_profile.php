@@ -67,7 +67,7 @@ $mform = new form_profile(null, $customdata);
 
 // Form processing and displaying is done here.
 if ($mform->is_cancelled()) {
-
+    redirect(new moodle_url('/mod/upc/view.php', array('id' => $cmid)));
 } else if ($fromform = $mform->get_data()) {
 
     file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
