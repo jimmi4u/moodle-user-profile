@@ -44,3 +44,4 @@ $string['invalid_description'] = 'Invalid description';
 
 $string['add_my_card'] = 'Add a card';
 
+$string['deleteconfirmmessage'] = "Are you sure to delete your card?";

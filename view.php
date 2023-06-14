@@ -74,6 +74,7 @@ $hascard = $DB->get_record(
         'activityid' => $context->instanceid
         )
 );
+$formlink_delete = 'form_delete.php?cmid=' . $cm->id . '&userid=' . $USER->id;
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
@@ -91,7 +92,8 @@ foreach ($records as $record) {
         'text' => $record->textfield,
         'name' => $user->firstname . ' ' . $user->lastname,
         'its_my_card' => $user->id === $USER->id,
-        'form_link' => $formlink
+        'form_link' => $formlink,
+        'form_link_delete' => $formlink_delete
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
