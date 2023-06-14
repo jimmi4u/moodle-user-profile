@@ -2,9 +2,14 @@
     <div class="card h-100">
 		<div class="card-body">
 			<div class="media mb-4">
+				{{# url }}
 				<div class="media-image rounded-circle mr-3" style="background-image:url({{url}}); width:80px; height:80px; background-size:cover;">
-				<span class="sr-only">{{name}}</span>
+					<span class="sr-only">{{name}}</span>
 				</div>
+				{{/ url }}
+				{{^ url }}
+					<i role="img" class="icon fa fa-user-circle-o fa-fw text-secondary mx-auto" style="font-size:6em;">
+				{{/ url }}
 				<div class="media-body">
 					<h5 class="mt-0">{{name}}</h5>
 					{{text}}
