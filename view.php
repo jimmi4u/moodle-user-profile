@@ -26,7 +26,7 @@ require(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 require_once(__DIR__.'/locallib.php');
 
-global $USER;
+global $USER, $DB;
 
 // Course module id.
 $id = optional_param('id', 0, PARAM_INT);
@@ -69,18 +69,16 @@ $newcarddata = array(
 
 echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 
-global $DB;
-
 $context = context_module::instance($cm->id);
 
-
-$records = $DB->get_records('userdata'); // TODO Auf instanceid der aktivitaet einschraenken
+$records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
         'url' => get_image_link($context->id, $record->userid),
         'text' => $record->textfield,
         'name' => $user->firstname . ' ' . $user->lastname,
+        'its_my_card' => $user->id === $USER->id
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
