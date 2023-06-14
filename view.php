@@ -81,9 +81,6 @@ foreach ($records as $record) {
         'url' => get_image_link($context->id, $record->userid),
         'text' => $record->textfield,
         'name' => $user->firstname . ' ' . $user->lastname,
-        'edit' => '',
-        'delete' => '',
-        'export' => '',
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
