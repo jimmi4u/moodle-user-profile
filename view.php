@@ -63,8 +63,10 @@ $PAGE->set_context($modulecontext);
 
 echo $OUTPUT->header();
 
+$formlink = 'edit_profile.php?cmid=' . $cm->id;
+
 $newcarddata = array(
-    'form_link' => 'edit_profile.php?cmid=' . $cm->id
+    'form_link' => $formlink
 );
 
 echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
@@ -78,7 +80,8 @@ foreach ($records as $record) {
         'url' => get_image_link($context->id, $record->userid),
         'text' => $record->textfield,
         'name' => $user->firstname . ' ' . $user->lastname,
-        'its_my_card' => $user->id === $USER->id
+        'its_my_card' => $user->id === $USER->id,
+        'form_link' => $formlink
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
