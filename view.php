@@ -74,6 +74,7 @@ echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 $context = context_module::instance($cm->id);
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
+echo '<div class="row">';
 foreach ($records as $record) {
     $user = $DB->get_record('user', array('id' => $record->userid));
     $templatesettingscard = (object)[
@@ -85,5 +86,6 @@ foreach ($records as $record) {
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
+echo '</div>';
 
 echo $OUTPUT->footer();
