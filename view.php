@@ -61,6 +61,10 @@ $PAGE->set_context($modulecontext);
 $templatesettingscard = (object)[
     'url' => '../../25_Steal_Falls.jpg',
     'text' => 'testtext',
+    'name' => 'testname',
+    'edit' => ,
+    'delete' => ,
+    'export' => ,
 ];
 
 echo $OUTPUT->header();
@@ -71,5 +75,6 @@ $newcarddata = array(
 
 echo $OUTPUT->render_from_template('mod_upc/new_card', $newcarddata);
 echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
+echo $OUTPUT->render_from_template('mod_upc/new_card' $templatesettingscard);
 
 echo $OUTPUT->footer();
