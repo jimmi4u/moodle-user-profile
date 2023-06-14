@@ -28,13 +28,15 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Nutzerprofilkarten';
 $string['modulename'] = 'Nutzerprofilkarten';
 $string['modulenameplural'] = 'Nutzerprofilkarten';
-$string['pluginadministration'] = 'UPC Administration';
+$string['pluginadministration'] = 'Nutzerprofilkarten Administration';
 $string['customdesc'] = 'Nutzerdefinierte Beschreibung';
-$string['upccustomoptionsheading'] = 'Spezifische UPC Einstellungen';
+$string['upccustomoptionsheading'] = 'Spezifische Nutzerprofilkarten Einstellungen';
 $string['upcsettings'] = 'Einstellungen';
 $string['upcname'] = 'Activity name';
 $string['upcname_help'] = 'Bitte den Aktivitätstitel eingeben';
 
+$string['success_insert'] = 'Sie haben Ihre Kursprofilkarte erfolgreich erstellt.';
+$string['success_update'] = 'Sie haben Ihre Kursprofilkarte erfolgreich aktualisiert.';
 
 $string['placeholder_name'] = 'Max Musterfrau';
 $string['not_empty'] = 'Das Feld darf nicht leer bleiben';
@@ -46,3 +48,5 @@ $string['invalid_description'] = 'Ungültige Beschreibung';
 $string['add_my_card'] = 'Eigene Karte hinzufügen';
 
 $string['deleteconfirmmessage'] = "Sind Sie sicher, dass Sie Ihre Karte löschen wollen?";
+$string['success'] = "Sie haben Ihre Karte erfolgreich gelöscht.";
+$string['failed'] = "Es gab einen Fehler beim löschen Ihrer Karte.";

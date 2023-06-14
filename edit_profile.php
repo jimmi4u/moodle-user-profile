@@ -84,16 +84,21 @@ if ($mform->is_cancelled()) {
 
     file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
+    $msg = "";
     if (empty($check_data)) {
         $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $context->instanceid, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
+        $msg = get_string('success_insert', 'mod_upc');
     } else {
         $check_data->usermodified = $USER->id;
         $check_data->timemodified = time();
         $check_data->textfield = $fromform->description;
         $DB->update_record('userdata', $check_data);
+        $msg = get_string('success_update', 'mod_upc');
     }
-    
-    redirect(new moodle_url('/mod/upc/view.php', array('id' => $cmid)));
+
+    $message = $msg;
+    $url = new moodle_url('/mod/upc/view.php', array('id' => $cmid));    
+    redirect($url, $message);
 
 } else {
 

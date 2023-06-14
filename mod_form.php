@@ -68,7 +68,7 @@ class mod_upc_mod_form extends moodleform_mod {
 
         // Adding the rest of mod_upc settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'upcsettings', get_string('upcsettings', 'mod_upc'));
+        //$mform->addElement('static', 'label1', 'upcsettings', get_string('upcsettings', 'mod_upc'));
         // Add option to set custom lang string for textfield.
         $mform->addElement('header', 'upccustomoptionsheading', get_string('upccustomoptionsheading', 'mod_upc'));
         // Add textfield to input custom description

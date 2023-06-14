@@ -9,9 +9,9 @@ $result = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $c
 $msg = "";
 try {
     $delete = $DB->delete_records('userdata', ['id' => $result->id]);
-    $msg = "success";
+    $msg = get_string('success', 'mod_upc');
 } catch (Exception $ex) {
-    $msg = "failed";
+    $msg = get_string('failed', 'mod_upc');
 }
 
 $url = new moodle_url('/mod/upc/view.php', ['id' => $cmid]);

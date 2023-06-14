@@ -28,12 +28,15 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'User profile cards';
 $string['modulename'] = 'User profile cards';
 $string['modulenameplural'] = 'User profile cards';
-$string['pluginadministration'] = 'UPC administration';
+$string['pluginadministration'] = 'User profil cards administration';
 $string['customdesc'] = 'Custom description';
-$string['upccustomoptionsheading'] = 'Specific UPC settings';
+$string['upccustomoptionsheading'] = 'Specific user profil cards settings';
 $string['upcsettings'] = 'Settings';
 $string['upcname'] = 'Activity name';
 $string['upcname_help'] = 'Please fill in the activity name';
+
+$string['success_insert'] = 'You successfully created your profile card.';
+$string['success_update'] = 'Your successfully updated your profile card.';
 
 $string['placeholder_name'] = 'Max Musterfrau';
 $string['not_empty'] = 'This field is has to be filled in';
@@ -45,3 +48,5 @@ $string['invalid_description'] = 'Invalid description';
 $string['add_my_card'] = 'Add a card';
 
 $string['deleteconfirmmessage'] = "Are you sure to delete your card?";
+$string['success'] = "You successfully deleted your card.";
+$string['failed'] = "Deleting your card failed.";

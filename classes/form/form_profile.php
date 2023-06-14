@@ -73,7 +73,7 @@
         //}
         $mform->addRule('description', get_string('invalid_description', 'mod_upc'), 'callback', 'validate_description', 'client', false, false);
 
-        $this->add_action_buttons(true, "Speichern");
+        $this->add_action_buttons(true);
     }
 
     // Define the validation callback function.
