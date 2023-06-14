@@ -61,8 +61,7 @@
         // Check for custom string in db. Use lang file if no value available.
         if (empty($this->_customdata['customdesc'])) {
             $desc = get_string('description', 'mod_upc');
-        }
-        else {
+        } else {
             $desc = $this->_customdata['customdesc'];
         }
 

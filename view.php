@@ -79,6 +79,9 @@ $formlink_delete = 'form_delete.php?cmid=' . $cm->id . '&userid=' . $USER->id;
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
 $getheading = $DB->get_field('upc', 'customdesc', array('id' => $cm->instance), '*', MUST_EXIST);
+if (empty($getheading)) {
+    $getheading = get_string('description', 'mod_upc');
+}
 
 // Show my own card first
 if ($hascard && count($records) > 1) {
@@ -102,20 +105,8 @@ foreach ($records as $record) {
         'name' => $user->firstname . ' ' . $user->lastname,
         'its_my_card' => $user->id === $USER->id,
         'form_link' => $formlink,
+        'form_link_delete' => $formlink_delete,
         'customheading' => $getheading,
-    ];
-    echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
-}
-
-foreach ($records as $record) {
-    $user = $DB->get_record('user', array('id' => $record->userid));
-    $templatesettingscard = (object)[
-        'url' => get_image_link($context->id, $record->userid),
-        'text' => $record->textfield,
-        'name' => $user->firstname . ' ' . $user->lastname,
-        'its_my_card' => $user->id === $USER->id,
-        'form_link' => $formlink,
-        'form_link_delete' => $formlink_delete
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
