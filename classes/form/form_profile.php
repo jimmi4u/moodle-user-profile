@@ -34,6 +34,9 @@
         global $USER;
         $mform = $this->_form;
 
+        $mform->addElement('hidden', 'cmid', $this->_customdata['cmid']);
+        $mform->setType('cmid', PARAM_INT);
+
         $mform->addElement('text', 'name', get_string('name', 'mod_upc'), array('placeholder' => get_string('placeholder_name', 'mod_upc'), 'maxlength' => 255, 'size' => 50));
         // Set type of element.
         $mform->setType('name', PARAM_TEXT);

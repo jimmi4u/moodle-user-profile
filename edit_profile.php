@@ -32,15 +32,12 @@ $cmid = optional_param('cmid', 0, PARAM_INT);
 $context = context_system::instance();
 $PAGE->set_context($context);
 
-$PAGE->set_url(new moodle_url('/mod/upc/edit_profile.php'));
+$PAGE->set_url(new moodle_url('/mod/upc/edit_profile.php', ['cmid' => $cmid]));
 
 $PAGE->set_pagelayout('standard');
 
 $PAGE->set_title(get_string('pluginname', 'mod_upc'));
 $PAGE->set_heading(get_string('pluginname', 'mod_upc'));
-
-echo $OUTPUT->header();
-
 
 $filemanageropts = array(
     'subdirs' => 0,
@@ -56,20 +53,23 @@ $context = context_module::instance($cm->id);
 
 $itemid = $USER->id;
 
-$customdata = array(
-    'filemanageropts' => $filemanageropts
-);
-
 // Instantiate the myform form from within the plugin.
 $mform = new form_profile();
-$mform->set_data($data);
+//$mform->set_data($customdata);
 
 $draftupcpicture = file_get_submitted_draft_itemid('upcpicture');
 file_prepare_draft_area($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
 $data = new stdClass();
 $data->upcpicture = $draftupcpicture;
-$mform->set_data($data);
+
+$customdata = array(
+    'filemanageropts' => $filemanageropts,
+    'cmid' => $cmid,
+    'picture' => $data
+);
+
+$mform->set_data($customdata);
 
 // Form processing and displaying is done here.
 if ($mform->is_cancelled()) {
@@ -78,10 +78,26 @@ if ($mform->is_cancelled()) {
 
     $text = file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
+    $upc = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
+    $activityid = $DB->get_record('upc', ['course' => $upc->course]);
+
+    $check_data = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $activityid->course]);
+    if (empty($check_data)) {
+        $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $activityid->course, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
+    } else {
+        $check_data->usermodified = $USER->id;
+        $check_data->timemodified = time();
+        $check_data->textfield = $fromform->description;
+        $DB->update_record('userdata', $check_data);
+    }
+    
+    redirect(new moodle_url('/mod/upc/view.php', array('id' => $cmid)));
+
 } else {
 
+    echo $OUTPUT->header();
     // Display the form.
     $mform->display();
-}
 
-echo $OUTPUT->footer();
+    echo $OUTPUT->footer();
+}
