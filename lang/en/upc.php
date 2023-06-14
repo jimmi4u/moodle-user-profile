@@ -42,3 +42,4 @@ $string['edit'] = 'Bearbeiten';
 $string['delete'] = 'Löschen';
 $string['download'] = 'Herunterladen';
 
+$string['add_my_card'] = 'Eigene Karte hinzufügen';
