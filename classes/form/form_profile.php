@@ -37,11 +37,13 @@
         $mform->addElement('hidden', 'cmid', $this->_customdata['cmid']);
         $mform->setType('cmid', PARAM_INT);
 
+        /*
         $mform->addElement('text', 'name', get_string('name', 'mod_upc'), array('placeholder' => get_string('placeholder_name', 'mod_upc'), 'maxlength' => 255, 'size' => 50));
         // Set type of element.
         $mform->setType('name', PARAM_TEXT);
         // Erforderlich
         $mform->addRule('name', get_string('not_empty', 'mod_upc'), 'required', '', 'client', false, false);
+        */
 
         $filemanageropts = $this->_customdata['filemanageropts'];
         $mform->addElement(
@@ -51,10 +53,14 @@
             null,
             $filemanageropts
         );
+        $mform->setDefault('upcpicture', $this->_customdata['picture']);
 
         // Add elements to your form.
         $mform->addElement('textarea', 'description', get_string('description', 'mod_upc'), array('placeholder' => get_string('placeholder_description', 'mod_upc'), 'style' => 'width: 80%;'));
-        $mform->setType('description', PARAM_RAW);
+        $mform->setType('description', PARAM_TEXT);
+        //if (!empty($this->_customdata['description'])) {
+            $mform->setDefault('description', $this->_customdata['description']);
+        //}
         $mform->addRule('description', get_string('invalid_description', 'mod_upc'), 'callback', 'validate_description', 'client', false, false);
 
         $this->add_action_buttons(true, "Speichern");
