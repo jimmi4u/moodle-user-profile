@@ -1,8 +1,6 @@
 # User profile course #
-#test#
-TODO Describe the plugin shortly here.
-# Test Paul
-TODO Provide more detailed description here.
+# Description #
+--- Simon says ----
 
 ## Installing via uploaded ZIP file ##
 

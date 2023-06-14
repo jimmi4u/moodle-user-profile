@@ -56,7 +56,15 @@
         $mform->setDefault('upcpicture', $this->_customdata['picture']);
 
         // Add elements to your form.
-        $mform->addElement('textarea', 'description', get_string('description', 'mod_upc'), array('placeholder' => get_string('placeholder_description', 'mod_upc'), 'style' => 'width: 80%;'));
+        // Check for custom string in db. Use lang file if no value available.
+        if (empty($this->_customdata['customdesc'])) {
+            $desc = get_string('description', 'mod_upc');
+        }
+        else {
+            $desc = $this->_customdata['customdesc'];
+        }
+
+        $mform->addElement('textarea', 'description', $desc, array('placeholder' => get_string('placeholder_description', 'mod_upc'), 'style' => 'width: 80%;'));
         $mform->setType('description', PARAM_TEXT);
         //if (!empty($this->_customdata['description'])) {
             $mform->setDefault('description', $this->_customdata['description']);

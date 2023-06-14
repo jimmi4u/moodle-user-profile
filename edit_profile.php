@@ -64,11 +64,14 @@ if (empty($check_data->textfield)) {
     $description = $check_data->textfield;
 }
 
+$customdesc = $DB->get_field('upc', 'customdesc', array('id' => $cm->instance), '*', MUST_EXIST);
+
 $customdata = array(
     'filemanageropts' => $filemanageropts,
     'cmid' => $cmid,
     'picture' => $draftupcpicture,
-    'description' => $description
+    'description' => $description,
+    'customdesc' => $customdesc
 );
 $mform = new form_profile(null, $customdata);
 
