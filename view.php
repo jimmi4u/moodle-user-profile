@@ -77,7 +77,7 @@ $hascard = $DB->get_record(
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
-// Show my own card in first place
+// Show my own card first
 if ($hascard && count($records) > 1) {
     unset($records[$hascard->id]);
     array_unshift($records, $hascard);
