@@ -37,3 +37,8 @@ $string['attachments'] = 'Profilbild';
 $string['description'] = 'Infos über dich';
 $string['placeholder_description'] = 'Gib hier weitere Infos über dich an';
 $string['invalid_description'] = 'Ungültige Beschreibung';
+
+$string['edit'] = 'Bearbeiten';
+$string['delete'] = 'Löschen';
+$string['download'] = 'Herunterladen';
+
