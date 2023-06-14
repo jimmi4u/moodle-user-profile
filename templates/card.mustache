@@ -2,16 +2,21 @@
     <div class="card w-100">
 		<div class="card-body">
 			<div class="media">
-				<img class="mr-3" src="{{url}}" alt="{{name}}">
+				<div class="media-image rounded-circle mr-3" style="background-image:url({{url}}); width:80px; height:80px; background-size:cover;">
+				<span class="sr-only">{{name}}</span>
+				</div>
 				<div class="media-body">
 					<h5 class="mt-0">{{name}}</h5>
 					{{text}}
 				</div>
 			</div>
 			{{# its_my_card }}
-			<a href="{{form_link}}" class="btn btn-light"><i title="{{#str}}edit, core{{/str}}" role="img" aria-label="edit" class="icon fa fa-pencil-square-o fa-fw "> {{#str}}edit, core{{/str}}</i></a>
-			<a href="#" class="btn btn-light"><i title="{{#str}}delete, core{{/str}}" role="img" aria-label="delete" class="icon fa fa-trash-o fa-fw "> {{#str}}delete, core{{/str}}</i></a>fa-download
-			<a href="#" class="btn btn-light"><i title="{{#str}}download, core{{/str}}" role="img" aria-label="download" class="icon fa fa-download fa-fw "> {{#str}}download, core{{/str}}</i></a>
+			<a href="{{form_link}}" class="btn btn-light">
+				<i title="{{#str}}edit, core{{/str}}" role="img" aria-label="edit" class="icon fa fa-pencil-square-o fa-fw "> {{#str}}edit, core{{/str}}</i></a>
+			<a href="#" class="btn btn-light">
+				<i title="{{#str}}delete, core{{/str}}" role="img" aria-label="delete" class="icon fa fa-trash-o fa-fw "> {{#str}}delete, core{{/str}}</i></a>
+			<a href="#" class="btn btn-light">
+				<i title="{{#str}}download, core{{/str}}" role="img" aria-label="download" class="icon fa fa-download fa-fw "> {{#str}}download, core{{/str}}</i></a>
 			{{/ its_my_card }}
 		</div>
 	</div>
