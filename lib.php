@@ -26,7 +26,7 @@
  * Return if the plugin supports $feature.
  *
  * @param string $feature Constant representing the feature.
- * @return true | null True if the feature is supported, null otherwise.
+ * @return mixed True if module supports feature, false if not, null if doesn't know or string for the module purpose.
  */
 function upc_supports($feature) {
     switch ($feature) {
