@@ -51,9 +51,8 @@ $filemanageropts = array(
     'accepted_types' => array('.jpg', '.jpeg', '.png'),
 );
 
-//$cm = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
-//$context = context_module::instance($cm->id);
-$context = context_system::instance();
+$cm = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
+$context = context_module::instance($cm->id);
 
 $itemid = $USER->id;
 
@@ -80,33 +79,6 @@ if ($mform->is_cancelled()) {
     $text = file_save_draft_area_files($draftupcpicture, $context->id, 'mod_upc', 'upcpicture', $itemid, $filemanageropts);
 
 } else {
-
-//    $fs = get_file_storage();
-//    $files = $fs->get_area_files(
-//        $context->id,
-//        'mod_upc',
-//        'upcpicture',
-//        $itemid // USERID
-//    );
-//
-//    foreach ($files as $file) {
-//        if ($file->get_filename() !== '.') {
-//            $imagefile = $file;
-//        }
-//    }
-//
-//    if ($imagefile) {
-//        $url = moodle_url::make_pluginfile_url(
-//            $imagefile->get_contextid(),
-//            $imagefile->get_component(),
-//            $imagefile->get_filearea(),
-//            $imagefile->get_itemid(),
-//            $imagefile->get_filepath(),
-//            $imagefile->get_filename()
-//        );
-//        echo '<img src="' . $url . '">';
-//    }
-
 
     // Display the form.
     $mform->display();
