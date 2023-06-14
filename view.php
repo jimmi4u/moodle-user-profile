@@ -77,6 +77,8 @@ $hascard = $DB->get_record(
 
 $records = $DB->get_records('userdata', array('activityid' => $context->instanceid));
 
+$getheading = $DB->get_field('upc', 'customdesc', array('id' => $cm->instance), '*', MUST_EXIST);
+
 // Show my own card in first place
 if ($hascard && count($records) > 1) {
     unset($records[$hascard->id]);
@@ -91,7 +93,8 @@ foreach ($records as $record) {
         'text' => $record->textfield,
         'name' => $user->firstname . ' ' . $user->lastname,
         'its_my_card' => $user->id === $USER->id,
-        'form_link' => $formlink
+        'form_link' => $formlink,
+        'customheading' => $getheading,
     ];
     echo $OUTPUT->render_from_template('mod_upc/card', $templatesettingscard);
 }
