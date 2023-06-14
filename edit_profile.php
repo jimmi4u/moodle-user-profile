@@ -75,7 +75,15 @@ if ($mform->is_cancelled()) {
     $upc = get_coursemodule_from_id('upc', $cmid, 0, false, MUST_EXIST);
     $activityid = $DB->get_record('upc', ['course' => $upc->course]);
 
-    $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $activityid->course, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
+    $check_data = $DB->get_record('userdata', ['userid' => $USER->id, 'activityid' => $activityid->course]);
+    if (empty($check_data)) {
+        $DB->insert_record('userdata', ['usermodified' => $USER->id, 'userid' => $USER->id, 'activityid' => $activityid->course, 'timecreated' => time(), 'timemodified' => time(), 'textfield' => $fromform->description]);
+    } else {
+        $check_data->usermodified = $USER->id;
+        $check_data->timemodified = time();
+        $check_data->textfield = $fromform->description;
+        $DB->update_record('userdata', $check_data);
+    }
     
     redirect(new moodle_url('/mod/upc/view.php', array('id' => $cmid)));
 
