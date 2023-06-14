@@ -1,5 +1,5 @@
 # User profile course #
-# Description #
+## Description ##
 --- Simon says ----
 
 ## Installing via uploaded ZIP file ##
