@@ -152,14 +152,22 @@ function upc_get_file_info($browser, $areas, $course, $cm, $context, $filearea, 
  * @param array $options Additional options affecting the file serving.
  */
 function upc_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, $options = array()) {
-    global $DB, $CFG;
+    $itemid = array_shift($args);
+    $filename = array_pop($args);
 
-    if ($context->contextlevel != CONTEXT_MODULE) {
-        send_file_not_found();
+    if (!$args) {
+        $filepath = '/'; // $args is empty => the path is '/'
+    } else {
+        $filepath = '/'.implode('/', $args).'/'; // $args contains elements of the filepath
     }
+    $fs = get_file_storage();
+    $file = $fs->get_file($context->id, 'mod_upc', $filearea, $itemid, $filepath, $filename);
 
-    require_login($course, true, $cm);
-    send_file_not_found();
+    if (!$file) {
+        return false; // The file does not exist.
+    }
+    send_stored_file($file);
+
 }
 
 /**

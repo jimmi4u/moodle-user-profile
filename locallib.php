@@ -15,25 +15,40 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * locallib of mod_upc.
  *
  * @package     mod_upc
- * @category    string
  * @copyright   2023 Simon Schaudt  and others
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+function get_image_link($cmid, $itemid) {
+    $fs = get_file_storage();
+    $files = $fs->get_area_files(
+        $cmid,
+        'mod_upc',
+        'upcpicture',
+        $itemid // USERID
+    );
 
-$string['pluginname'] = 'User profile course';
-$string['modulename'] = 'User profile course';
-$string['modulenameplural'] = 'User profile course';
+    $imagefile = false;
+    foreach ($files as $file) {
+        if ($file->get_filename() !== '.') {
+            $imagefile = $file;
+            break;
+        }
+    }
 
+    if ($imagefile) {
+        return moodle_url::make_pluginfile_url(
+            $imagefile->get_contextid(),
+            $imagefile->get_component(),
+            $imagefile->get_filearea(),
+            $imagefile->get_itemid(),
+            $imagefile->get_filepath(),
+            $imagefile->get_filename()
+        );
+    }
 
-$string['name'] = 'Vor und Nachname';
-$string['placeholder_name'] = 'Max Musterfrau';
-$string['not_empty'] = 'Das Feld darf nicht leer bleiben';
-$string['attachments'] = 'Profilbild';
-$string['description'] = 'Infos über dich';
-$string['placeholder_description'] = 'Gib hier weitere Infos über dich an';
-$string['invalid_description'] = 'Ungültige Beschreibung';
+    return "";
+}
